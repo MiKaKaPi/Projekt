@@ -1,0 +1,340 @@
+﻿body
+{
+    width:97%;
+    height:97%;
+
+}
+
+
+.Labelkomunikat
+{
+    border: solid 1px yellow;
+    display:block;
+    position:relative;
+    overflow: auto;
+    text-overflow: ellipsis;
+    height: 19px;
+    min-width:50px;
+    width:auto;
+    max-width:500px;
+    z-index:1000;
+    background-color:#dbe0df;
+    margin-left:90px;
+    margin-top:3px;
+    padding : 5px;
+    font-size:14px;
+}
+
+
+#menu-bar {
+  width: 95%;
+  margin: 0px 0px 0px 0px;
+  max-height:35px;
+  line-height: 100%;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  box-shadow: 0px 2px 3px #666666;
+  -webkit-box-shadow: 0px 2px 3px #666666;
+  -moz-box-shadow: 0px 2px 3px #666666;
+  background: #8B8B8B;
+  background: linear-gradient(top,  #80FFFF,  #00CBD1);
+  background: -ms-linear-gradient(top,  #80FFFF,  #00CBD1);
+  background: -webkit-gradient(linear, left top, left bottom, from(#80FFFF), to(#00CBD1));
+  background: -moz-linear-gradient(top,  #80FFFF,  #00CBD1);
+  border: solid 1px #545454;
+  position:relative;
+  left:0;
+  z-index:999;
+}
+#leftbar
+{
+    float:left;
+}
+
+#rightbar
+{
+    float:right;
+   margin-right:70px;
+}
+.btnpowrot
+{
+    padding:0px;
+    width:30px;
+    height:30px;
+margin-top:2px;
+}
+.btnpowrot:hover
+{
+    border:solid 1px red;
+    fill:red;
+    background:none;
+
+}
+.btnpowrot:active
+{
+    border:dotted 1px yellow;
+    fill:yellow;
+
+}
+#menu-bar .active a, #menu-bar li:hover > a,.btncss:hover {
+  background: #0399D4;
+  background: linear-gradient(top,  #43EDC0,  #F7F7F7);
+  background: -ms-linear-gradient(top,  #43EDC0,  #F7F7F7);
+  background: -webkit-gradient(linear, left top, left bottom, from(#43EDC0), to(#F7F7F7));
+  background: -moz-linear-gradient(top,  #43EDC0,  #F7F7F7);
+  color: #444444;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 1px rgb(0, 0, 0);
+  text-shadow: 0px 2px 3px #FFFFFF;
+  border-radius:10px 8px;
+  cursor:pointer;
+}
+#menu-bar li {
+  margin: 0px 0px 6px 0px;
+  padding: 0px 11px 0px 9px;
+  float: left;
+  position: relative;
+  list-style: none;
+}
+
+.btncss
+{
+    background-color:mediumaquamarine;
+}
+#menu-bar a,.btncss {
+  font-weight: bold;
+  font-family: arial;
+  font-style: normal;
+  font-size: 13px;
+  color: #404040;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px 5px 15px;
+  text-align:center;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  text-shadow: 2px 2px 3px #5b4dbb;
+  width:100%;
+  height:100%;
+}
+
+#menu-bar li:hover > ul {
+  display: block;
+}
+#menu-bar ul {
+  background: #DDDDDD;
+  background: linear-gradient(top,  #D1D1D1,  #02BFCC);
+  background: -ms-linear-gradient(top,  #D1D1D1,  #02BFCC);
+  background: -webkit-gradient(linear, left top, left bottom, from(#D1D1D1), to(#02BFCC));
+  background: -moz-linear-gradient(top,  #D1D1D1,  #02BFCC);
+  display: none;
+  margin: 0;
+  padding: 0;
+  width: 185px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  border: solid 1px #B4B4B4;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-box-shadow: 2px 2px 3px #222222;
+  -moz-box-shadow: 2px 2px 3px #222222;
+  box-shadow: 2px 2px 3px #222222;
+}
+#menu-bar ul li {
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu-bar:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#menu-bar {
+  display: inline-block;
+}
+* html #menu-bar {
+  height: 1%;
+}
+
+
+
+/* drag container */
+#main_container {
+	margin: auto;
+	width: 730px;
+}
+		/* container for the left table */
+		#main_container #left {
+			width: 130px;
+			height: 320px;
+			float: left;
+			margin-right: 20px;
+		}
+		/* container for the main table and message line below */
+		#main_container #right {
+			width: 675px;
+			padding-left: 0;
+			padding-right: 0px;
+			/* align div to the right */
+			margin-left: auto;
+		}
+
+
+/* drag objects (DIV inside table cells) */
+.redips-drag {
+	cursor: move;
+	margin: auto;
+	z-index: 10;
+	color: #222;
+	text-align: center;
+	font-size: 10pt; /* needed for cloned object */
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	/* without width, IE6/7 will not apply filter/opacity to the element ?! */
+	/* IE needs element layout */
+	width: 87px;
+	height: 20px;
+	line-height: 20px;
+	/* border */
+	border: 1px solid #555;
+	/* round corners */
+	border-radius: 3px;
+	-moz-border-radius: 3px; /* FF */
+}
+
+
+/* tables */
+div#redips-drag table {
+	background-color: #eee;
+	border-collapse: collapse;
+}
+		/* timetable */
+		div#drag #table2 {
+			/* align table to the right */
+			margin-left: auto;
+		}
+
+
+/* table cells */
+div#redips-drag td {
+	border-style: solid;
+	border-width: 1px;
+	border-color: white;
+	height: 32px;
+	text-align: center;
+	font-size: 10pt;
+	padding: 2px;
+}
+		/* overwrite border settings for left tables */
+		/* set all borders to 0px except border-bottom */
+		div#redips-drag #table1 td {
+			border-width: 0px 0px 1px 0px;
+		}
+			/* styles for clone DIV elements in left table */
+			div#redips-drag #table1 div {
+				margin-left: 5px;
+				float: left;
+			}
+			/* define styles for buttons */
+			div#redips-drag #table1 input {
+				float: right;
+				width: 15px;
+				height: 23px;
+				margin-right: 5px;
+				border-width: 1px;
+				/* round corners */
+				border-radius: 3px;
+				/* default visibility is hidden */
+				visibility: hidden;
+			}
+
+
+/* subject colors */
+.ar {
+	background-color: #AAC8E2;
+}
+.bi {
+	background-color: #E7D783;
+}
+.ch {
+	background-color: #E99AE6;
+}
+.en {
+	background-color: #C4AFFF;
+}
+.et {
+	background-color: #91DEC5;
+}
+.hi {
+	background-color: #CFE17F;
+}
+.it {
+	background-color: #E7BD83;
+}
+.ma {
+	background-color: #FFC5C2;
+}
+.ph {
+	background-color: #A5F09D;
+}
+
+
+/* blank cells (upper left corner) */
+.blank {
+	background-color: white;
+}
+
+
+/* background color for lunch */
+.lunch {
+	color: #665;
+	background-color: #f8eeee;
+}
+
+
+/* trash cell */
+.redips-trash {
+	color: white;
+	background-color: #6386BD;
+}
+
+
+/* message line */
+#message {
+	color: white;
+	background-color: #aaa;
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+/* dark cells (first column and table header) */
+.dark{
+	color: #444;
+	background-color: #e0e0e0;
+}
+
+.button_container{
+	padding-top: 10px;
+	text-align: right;
+}
+
+		/* "Save" button */
+		.button_container input{
+			background-color: #6A93D4;
+			color: white; 
+			border-width: 1px;
+			width: 40px;
+			padding: 0px;
+		}
