@@ -4,7 +4,7 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - Plan zajęć</title>
+    <title><%: Page.Title %> - MatStud - aplikacja do zarządzania materiałami studenckimi.</title>
     <link href="~/Content/Site.css" rel="stylesheet" /> 
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
    
@@ -62,7 +62,7 @@
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
-                <p>&copy;Michał Jabłoński <%: DateTime.Now.Year %> - Plan zajęć</p>
+                <p>&copy;MiKaKaPi Team <%: DateTime.Now.Year %> - MatStud</p>
             </div>
             <div class="float-right">
               <asp:Label runat="server" id="onlinelbl" Text=""></asp:Label>
