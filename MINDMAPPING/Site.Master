@@ -32,6 +32,7 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul>
+                                <li><a id="materialyLink" runat="server" href="~/Materialy" class="buttonreg">Materiały</a></li>
                                 <li><a id="registerLink" runat="server" href="~/Account/Register" class="buttonlogin">Rejestracja</a></li>
                                 <li><a id="loginLink" runat="server" href="~/Account/Login" class="buttonreg">Logowanie</a></li>
                             </ul>
