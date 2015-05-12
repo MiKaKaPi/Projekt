@@ -12,7 +12,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h3>Projekt powstał na potrzeby przedmiotu Zarządzanie Projektami Informatycznymi.<br /><br />
 
-        Autor: ...<br />
+        Autor: fksjaf...<br />
         Politechnika Częstochowska.<br />
         Wydział Inżynierii Mechanicznej i Informatyki.<br />
         Instytut Inteligentnych Systemów Informatycznych. <br />
