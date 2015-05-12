@@ -63,7 +63,7 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p>&copy;MiKaKaPi Team <%: DateTime.Now.Year %> - MatStud</p>
-            </div>
+            </div>d
             <div class="float-right">
               <asp:Label runat="server" id="onlinelbl" Text=""></asp:Label>
             </div>
