@@ -100,10 +100,8 @@
     <Content Include="App_Data\changepasswordemail.txt" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
-    <Content Include="Account\Tworz.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\PasswordRecovery.aspx" />
-    <Content Include="Account\Pliki.aspx" />
     <Content Include="App_Data\recoverypasswordemail.txt" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
@@ -123,7 +121,7 @@
     <Content Include="Images\tick.png" />
     <Content Include="Images\x.png" />
     <Content Include="Images\xred.png" />
-    <Content Include="Materialy.aspx" />
+    <Content Include="Account\Materialy.aspx" />
     <Content Include="packages.config" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -138,26 +136,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\Tworz.aspx.cs">
-      <DependentUpon>Tworz.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Tworz.aspx.designer.cs">
-      <DependentUpon>Tworz.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\PasswordRecovery.aspx.cs">
       <DependentUpon>PasswordRecovery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\PasswordRecovery.aspx.designer.cs">
       <DependentUpon>PasswordRecovery.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Pliki.aspx.cs">
-      <DependentUpon>Pliki.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Pliki.aspx.designer.cs">
-      <DependentUpon>Pliki.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="Account\Login.aspx.cs">
@@ -206,11 +190,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Materialy.aspx.cs">
+    <Compile Include="Account\Materialy.aspx.cs">
       <DependentUpon>Materialy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Materialy.aspx.designer.cs">
+    <Compile Include="Account\Materialy.aspx.designer.cs">
       <DependentUpon>Materialy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
