@@ -4,5 +4,5 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView ID="GridView1" runat="server" Width="944px"></asp:GridView>
+    <asp:GridView ID="GridPrzedmioty" runat="server" Width="205px"></asp:GridView> <asp:GridView ID="GridMaterialy" runat="server" Width="205px"></asp:GridView>
 </asp:Content>
