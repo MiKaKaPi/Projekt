@@ -581,6 +581,11 @@ fieldset {
 	text-shadow:1px 1px 0px #528ecc;
     }
 
+    button.buttonfield{
+        width:70px;
+        line-height:20px;
+    }
+
 input[type="submit"]:hover,
 input[type="button"]:hover,
 button:hover {
