@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlanZajec</RootNamespace>
-    <AssemblyName>PlanZajec</AssemblyName>
+    <RootNamespace>MatStud</RootNamespace>
+    <AssemblyName>MatStud</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -110,17 +110,12 @@
     <Content Include="Content\tablestyle.css" />
     <Content Include="Images\20036-42.png" />
     <Content Include="Images\accent.png" />
-    <Content Include="Images\bluearrow.png" />
     <Content Include="Images\bullet.png" />
-    <Content Include="Images\edit.png" />
-    <Content Include="Images\gnome_shutdown.png" />
+    <Content Include="Images\download11.png" />
     <Content Include="Images\heroAccent.png" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\tick.png" />
-    <Content Include="Images\x.png" />
-    <Content Include="Images\xred.png" />
     <Content Include="Account\Materialy.aspx" />
     <Content Include="packages.config" />
     <Content Include="Web.config">

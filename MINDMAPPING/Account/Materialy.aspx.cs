@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.IO;
+using System.Data.SqlTypes;
 
 namespace PlanZajec
 {
@@ -14,13 +16,10 @@ namespace PlanZajec
     {
         
         private DataTable _dataTablePrzedmioty;
-        
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
                 BindGridPrzedmioty();
-            
+               
         }
 
         private void BindGridPrzedmioty()
@@ -101,8 +100,87 @@ namespace PlanZajec
             int numberOfClickedRow = Int32.Parse(e.CommandArgument.ToString());
             const int iterFromTable = 0;
             int subjectId = Int32.Parse(_dataTablePrzedmioty.Rows[numberOfClickedRow].ItemArray[iterFromTable].ToString());
+            HF_subjectID.Value = subjectId.ToString();
             BindGridMaterialyById(subjectId);
 
+        }
+
+        protected void GridMaterialy_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "sciagnij")
+            {
+
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string streamID = GridMaterialy.Rows[rowIndex].Cells[0].Text;
+                string nazwapliku = GridMaterialy.Rows[rowIndex].Cells[1].Text;
+
+                SqlConnection objSqlCon = new SqlConnection();
+                objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["FileTableDBConnectionString"].ConnectionString;
+                objSqlCon.Open();
+                SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
+                SqlCommand objSqlCmd = new SqlCommand("SELECT file_stream.PathName(),file_type FROM [dbo].[ZdjeciaFileTable] where stream_id=@stream_id ", objSqlCon, objSqlTran);
+                objSqlCmd.Parameters.AddWithValue("stream_id", streamID);
+
+                string path = string.Empty;
+                string fileType = string.Empty;
+
+                using (SqlDataReader sdr = objSqlCmd.ExecuteReader())
+                {
+                    while (sdr.Read())
+                        path = sdr[0].ToString();
+                }
+
+                objSqlCmd = new SqlCommand("SELECT GET_FILESTREAM_TRANSACTION_CONTEXT()", objSqlCon, objSqlTran);
+                byte[] objContext = (byte[])objSqlCmd.ExecuteScalar();
+
+                SqlFileStream objSqlFileStream = new SqlFileStream(path, objContext, FileAccess.ReadWrite);
+                byte[] buffer = new byte[(int)objSqlFileStream.Length];
+
+                objSqlFileStream.Read(buffer, 0, buffer.Length);
+                objSqlFileStream.Close();
+
+                objSqlTran.Commit();
+                Response.Clear();
+                Response.AddHeader("Content-disposition", "attachment; filename=" + nazwapliku);
+                Response.ContentType = "image/jpeg";
+                Response.BinaryWrite(buffer);
+                }
+                else
+                {
+                   
+                }
+            }
+        
+
+        protected void Btn_Wyslij_Click(object sender, EventArgs e)
+        {
+           
+            if (FileUpload1.HasFile && HF_subjectID.Value != "")
+            {
+                byte[] context = FileUpload1.FileBytes;
+                string saveFileName = FileUpload1.FileName;
+                String fileExtension = System.IO.Path.GetExtension(FileUpload1.FileName).ToLower();
+                SqlConnection objSqlCon = new SqlConnection();
+                String opis = "testetetetesststs";
+                Guid guid = Guid.NewGuid();
+                objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
+                objSqlCon.Open();
+                SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
+                SqlCommand objSqlCmd = new SqlCommand("INSERT INTO Pliki(id,file_stream, Nazwa, Opis,Rozszerzenie, IdPrzedmiotu) VALUES (@guid,@dane, @nazwa,@opis,@rozszerzenie,@idprzedmiotu) ", objSqlCon, objSqlTran);
+                objSqlCmd.Parameters.AddWithValue("guid", guid);
+                objSqlCmd.Parameters.AddWithValue("dane", context);
+                objSqlCmd.Parameters.AddWithValue("nazwa", saveFileName);
+                objSqlCmd.Parameters.AddWithValue("opis", opis);
+                objSqlCmd.Parameters.AddWithValue("rozszerzenie", fileExtension);
+                objSqlCmd.Parameters.AddWithValue("idprzedmiotu", HF_subjectID.Value);
+                objSqlCmd.ExecuteNonQuery();
+
+                objSqlTran.Commit();
+            }
+            else
+            {
+
+            }
         }
     }
 }
