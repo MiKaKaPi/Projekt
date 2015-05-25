@@ -7,7 +7,7 @@
     </hgroup>
     <section id="loginForm">
         <h2>Użyj lokalnego konta by się zalogować</h2>
-        <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false" DestinationPageUrl="~/Account/Pliki" FailureText="Nie udało ci się zalogować. Spróbuj ponownie.">
+        <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false" DestinationPageUrl="~/Account/Materialy" FailureText="Nie udało ci się zalogować. Spróbuj ponownie.">
             <LayoutTemplate>
                 <p class="validation-summary-errors">
                     <asp:Literal runat="server" ID="FailureText" />
