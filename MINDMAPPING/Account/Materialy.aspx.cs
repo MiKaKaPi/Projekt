@@ -115,40 +115,29 @@ namespace PlanZajec
                 string nazwapliku = GridMaterialy.Rows[rowIndex].Cells[1].Text;
 
                 SqlConnection objSqlCon = new SqlConnection();
-                objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["FileTableDBConnectionString"].ConnectionString;
+                objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();
                 SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
-                SqlCommand objSqlCmd = new SqlCommand("SELECT file_stream.PathName(),file_type FROM [dbo].[ZdjeciaFileTable] where stream_id=@stream_id ", objSqlCon, objSqlTran);
+                SqlCommand objSqlCmd = new SqlCommand("SELECT file_stream FROM Pliki where id=@stream_id", objSqlCon, objSqlTran);
                 objSqlCmd.Parameters.AddWithValue("stream_id", streamID);
 
-                string path = string.Empty;
+                byte[] context = { };
                 string fileType = string.Empty;
 
                 using (SqlDataReader sdr = objSqlCmd.ExecuteReader())
                 {
                     while (sdr.Read())
-                        path = sdr[0].ToString();
+                        context = (byte[])sdr[0];
                 }
 
-                objSqlCmd = new SqlCommand("SELECT GET_FILESTREAM_TRANSACTION_CONTEXT()", objSqlCon, objSqlTran);
-                byte[] objContext = (byte[])objSqlCmd.ExecuteScalar();
 
-                SqlFileStream objSqlFileStream = new SqlFileStream(path, objContext, FileAccess.ReadWrite);
-                byte[] buffer = new byte[(int)objSqlFileStream.Length];
-
-                objSqlFileStream.Read(buffer, 0, buffer.Length);
-                objSqlFileStream.Close();
 
                 objSqlTran.Commit();
                 Response.Clear();
                 Response.AddHeader("Content-disposition", "attachment; filename=" + nazwapliku);
-                Response.ContentType = "image/jpeg";
-                Response.BinaryWrite(buffer);
-                }
-                else
-                {
-                   
-                }
+                //Response.ContentType = "image/jpeg";  
+                Response.BinaryWrite(context);
+            }
             }
         
 
