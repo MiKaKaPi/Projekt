@@ -143,15 +143,15 @@ namespace PlanZajec
 
         protected void Btn_Wyslij_Click(object sender, EventArgs e)
         {
-           
-            if (FileUpload1.HasFile && HF_subjectID.Value != "")
+            if (FileUpload1.HasFile)
             {
                 byte[] context = FileUpload1.FileBytes;
                 string saveFileName = FileUpload1.FileName;
                 String fileExtension = System.IO.Path.GetExtension(FileUpload1.FileName).ToLower();
                 string owner = User.Identity.Name;
                 SqlConnection objSqlCon = new SqlConnection();
-                String opis = "testetetetesststs";
+                int idprzedmiotu = Convert.ToInt32(DropDownList1.SelectedValue);
+                String opis = Opis_TB.Text;
                 Guid guid = Guid.NewGuid();
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();
@@ -162,15 +162,12 @@ namespace PlanZajec
                 objSqlCmd.Parameters.AddWithValue("nazwa", saveFileName);
                 objSqlCmd.Parameters.AddWithValue("opis", opis);
                 objSqlCmd.Parameters.AddWithValue("rozszerzenie", fileExtension);
-                objSqlCmd.Parameters.AddWithValue("idprzedmiotu", HF_subjectID.Value);
+                objSqlCmd.Parameters.AddWithValue("idprzedmiotu", idprzedmiotu);
                 objSqlCmd.Parameters.AddWithValue("owner", owner);
                 objSqlCmd.ExecuteNonQuery();
 
                 objSqlTran.Commit();
-            }
-            else
-            {
-
+                Opis_TB.Text = "";
             }
         }
 
