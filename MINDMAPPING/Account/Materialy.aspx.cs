@@ -149,19 +149,21 @@ namespace PlanZajec
                 byte[] context = FileUpload1.FileBytes;
                 string saveFileName = FileUpload1.FileName;
                 String fileExtension = System.IO.Path.GetExtension(FileUpload1.FileName).ToLower();
+                string owner = User.Identity.Name;
                 SqlConnection objSqlCon = new SqlConnection();
                 String opis = "testetetetesststs";
                 Guid guid = Guid.NewGuid();
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();
                 SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
-                SqlCommand objSqlCmd = new SqlCommand("INSERT INTO Pliki(id,file_stream, Nazwa, Opis,Rozszerzenie, IdPrzedmiotu) VALUES (@guid,@dane, @nazwa,@opis,@rozszerzenie,@idprzedmiotu) ", objSqlCon, objSqlTran);
+                SqlCommand objSqlCmd = new SqlCommand("INSERT INTO Pliki(id,file_stream, Nazwa, Opis,Rozszerzenie, IdPrzedmiotu, Wlasciciel) VALUES (@guid,@dane, @nazwa,@opis,@rozszerzenie,@idprzedmiotu,@owner) ", objSqlCon, objSqlTran);
                 objSqlCmd.Parameters.AddWithValue("guid", guid);
                 objSqlCmd.Parameters.AddWithValue("dane", context);
                 objSqlCmd.Parameters.AddWithValue("nazwa", saveFileName);
                 objSqlCmd.Parameters.AddWithValue("opis", opis);
                 objSqlCmd.Parameters.AddWithValue("rozszerzenie", fileExtension);
                 objSqlCmd.Parameters.AddWithValue("idprzedmiotu", HF_subjectID.Value);
+                objSqlCmd.Parameters.AddWithValue("owner", owner);
                 objSqlCmd.ExecuteNonQuery();
 
                 objSqlTran.Commit();
@@ -170,6 +172,11 @@ namespace PlanZajec
             {
 
             }
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
