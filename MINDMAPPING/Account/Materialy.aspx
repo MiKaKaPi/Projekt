@@ -17,14 +17,15 @@
         <asp:TextBox ID="Opis_TB" runat="server" Height="122px" TextMode="MultiLine"></asp:TextBox>
         <div><asp:GridView ID="GridPrzedmioty"  HorizontalAlign="Left" runat="server"  AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
         <Columns>
-            <asp:BoundField DataField="Nazwa"  HeaderText ="Nazwa przedmiotu"/>
-            <asp:ButtonField ButtonType="Button"  Text="Wyświetl" ControlStyle-CssClass="contact" />
+            <asp:BoundField  DataField="Nazwa"  HeaderText ="Nazwa przedmiotu"/>
+            <asp:ButtonField ControlStyle-Height="50px"  ButtonType="Button"  Text="Wyświetl" ControlStyle-CssClass="buttonfield" />
+       
         </Columns>
         </asp:GridView>
 
     </div>
     
-    <asp:GridView ID="GridMaterialy" OnRowCommand="GridMaterialy_RowCommand" runat="server" Width="400px" AutoGenerateColumns="False">
+    <asp:GridView ID="GridMaterialy" RowStyle-HorizontalAlign="Center" HorizontalAlign="center" OnRowCommand="GridMaterialy_RowCommand" CssClass="grid" runat="server" Width="400px" AutoGenerateColumns="False">
         <Columns>
             <%--<asp:BoundField DataField="id" HeaderText="" />--%>
             <asp:BoundField DataField="Nazwa" HeaderText="Nazwa"/>
