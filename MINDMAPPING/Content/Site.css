@@ -581,10 +581,12 @@ fieldset {
 	text-shadow:1px 1px 0px #528ecc;
     }
 
-    button.buttonfield{
-        width:70px;
-        line-height:20px;
-    }
+        button.buttonfield {
+            width: 70px;
+            line-height: 20px;
+            text-align: center;
+            float: right;
+        }
 
 input[type="submit"]:hover,
 input[type="button"]:hover,
@@ -678,6 +680,13 @@ table {
     border: 0 none;
 }
 
+ table.grid{ 
+           border-collapse:collapse; 
+           border:solid 2px black; 
+        } 
+        table.grid td, th{ 
+           border:solid 2px black; 
+        } 
 th {
 	font-size: 1.2em;
     text-align: left;

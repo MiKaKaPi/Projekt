@@ -11,16 +11,17 @@
         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
         </asp:DropDownList>
     <asp:Button ID="Btn_Wyslij" runat="server" OnClick="Btn_Wyslij_Click" Text="Wyślij" />
-        <textarea id="TextArea1" cols="20" name="S1" rows="2"></textarea><div><asp:GridView ID="GridPrzedmioty"  HorizontalAlign="Left" runat="server"  AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
+        <textarea id="TextArea1" cols="20" name="S1" rows="2"></textarea><div><asp:GridView ID="GridPrzedmioty" CssClass="grid" HorizontalAlign="Left" runat="server"  AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand" BorderColor="#006699">
         <Columns>
-            <asp:BoundField DataField="Nazwa"  HeaderText ="Nazwa przedmiotu"/>
-            <asp:ButtonField ButtonType="Button"  Text="Wyświetl" ControlStyle-CssClass="contact" />
-        </Columns>
+            <asp:BoundField  DataField="Nazwa"  HeaderText ="Nazwa przedmiotu"/>
+            <asp:ButtonField ControlStyle-Height="50px"  ButtonType="Button"  Text="Wyświetl" ControlStyle-CssClass="buttonfield" />
+       
+             </Columns>
         </asp:GridView>
 
     </div>
     
-    <asp:GridView ID="GridMaterialy" OnRowCommand="GridMaterialy_RowCommand" runat="server" Width="400px" AutoGenerateColumns="False">
+    <asp:GridView ID="GridMaterialy" RowStyle-HorizontalAlign="Center" HorizontalAlign="center" OnRowCommand="GridMaterialy_RowCommand" CssClass="grid" runat="server" Width="400px" AutoGenerateColumns="False">
         <Columns>
             <%--<asp:BoundField DataField="id" HeaderText="" />--%>
             <asp:BoundField DataField="Nazwa" HeaderText="Nazwa"/>
