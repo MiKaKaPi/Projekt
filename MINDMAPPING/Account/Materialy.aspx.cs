@@ -151,7 +151,7 @@ namespace PlanZajec
                 string owner = User.Identity.Name;
                 SqlConnection objSqlCon = new SqlConnection();
                 int idprzedmiotu = Convert.ToInt32(DropDownList1.SelectedValue);
-                String opis = "";
+                String opis = Opis_TB.Text;
                 Guid guid = Guid.NewGuid();
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();
@@ -167,10 +167,7 @@ namespace PlanZajec
                 objSqlCmd.ExecuteNonQuery();
 
                 objSqlTran.Commit();
-            }
-            else
-            {
-
+                Opis_TB.Text = "";
             }
         }
 
