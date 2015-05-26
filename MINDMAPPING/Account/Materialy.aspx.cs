@@ -113,7 +113,7 @@ namespace PlanZajec
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string streamID = GridMaterialy.Rows[rowIndex].Cells[0].Text;
                 string nazwapliku = GridMaterialy.Rows[rowIndex].Cells[1].Text;
-
+                
                 SqlConnection objSqlCon = new SqlConnection();
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();

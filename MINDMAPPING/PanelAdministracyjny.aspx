@@ -5,6 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [DoPaneluView]"></asp:SqlDataSource>
+    <asp:GridView ID="Users_GV" runat="server" DataSourceID="SqlDataSource1"></asp:GridView>
 </asp:Content>
