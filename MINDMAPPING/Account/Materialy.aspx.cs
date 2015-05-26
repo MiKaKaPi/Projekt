@@ -189,5 +189,10 @@ namespace PlanZajec
         {
 
         }
+
+        protected void DropDownList1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -8,10 +8,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
         <asp:HiddenField ID="HF_subjectID"  runat="server" />
         <asp:FileUpload ID="FileUpload1" runat="server" />
-        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" OnTextChanged="DropDownList1_TextChanged">
         </asp:DropDownList>
     <asp:Button ID="Btn_Wyslij" runat="server" OnClick="Btn_Wyslij_Click" Text="Wyślij" />
-        <textarea id="TextArea1" cols="20" name="S1" rows="2"></textarea><div><asp:GridView ID="GridPrzedmioty"  HorizontalAlign="Left" runat="server"  AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
+        <div><asp:GridView ID="GridPrzedmioty"  HorizontalAlign="Left" runat="server"  AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
         <Columns>
             <asp:BoundField DataField="Nazwa"  HeaderText ="Nazwa przedmiotu"/>
             <asp:ButtonField ButtonType="Button"  Text="Wyświetl" ControlStyle-CssClass="contact" />
