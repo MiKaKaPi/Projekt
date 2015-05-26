@@ -11,7 +11,7 @@
     <hgroup>
     </hgroup>
     <section id="loginForm">
-    <asp:CreateUserWizard runat="server" ID="RegisterUser" ViewStateMode="Disabled" OnCreatedUser="RegisterUser_CreatedUser" MembershipProvider="LoginMembershipProvider" CompleteSuccessText="Konto utworzone pomyślnie" DuplicateEmailErrorMessage="E-mail podany przez Ciebie jest już używany. Podaj inny." DuplicateUserNameErrorMessage="Podana przez Ciebie nazwa użytkownika jest już zajęta. Podaj inną." InvalidPasswordErrorMessage=" Hasło musi mieć przynajmniej {0} znaków w tym {1} znak niealfanumeryczny." UnknownErrorMessage="Konto nie zostało utworzone. Spróbuj ponownie.">
+    <asp:CreateUserWizard runat="server" DisableCreatedUser="true" ID="RegisterUser" ViewStateMode="Disabled" OnCreatedUser="RegisterUser_CreatedUser" MembershipProvider="LoginMembershipProvider" CompleteSuccessText="Konto utworzone pomyślnie" DuplicateEmailErrorMessage="E-mail podany przez Ciebie jest już używany. Podaj inny." DuplicateUserNameErrorMessage="Podana przez Ciebie nazwa użytkownika jest już zajęta. Podaj inną." InvalidPasswordErrorMessage=" Hasło musi mieć przynajmniej {0} znaków w tym {1} znak niealfanumeryczny." UnknownErrorMessage="Konto nie zostało utworzone. Spróbuj ponownie.">
         <LayoutTemplate>
             <asp:PlaceHolder runat="server" ID="wizardStepPlaceholder" />
             <asp:PlaceHolder runat="server" ID="navigationPlaceholder" />

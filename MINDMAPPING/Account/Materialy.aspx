@@ -9,7 +9,7 @@
         <asp:HiddenField ID="HF_subjectID"  runat="server" />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:mywindowshosting %>" SelectCommand="SELECT [Nazwa], [Id] FROM [Przedmioty]"></asp:SqlDataSource>
         <asp:FileUpload ID="FileUpload1" runat="server" />
-        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" DataSourceID="SqlDataSource1" DataTextField="Nazwa" DataValueField="Id">
+        <asp:DropDownList ID="DropDownList1" runat="server"  DataSourceID="SqlDataSource1" DataTextField="Nazwa" DataValueField="Id">
         </asp:DropDownList>
     <asp:Button ID="Btn_Wyslij" runat="server" OnClick="Btn_Wyslij_Click" Text="Wyślij" />
         <br />
