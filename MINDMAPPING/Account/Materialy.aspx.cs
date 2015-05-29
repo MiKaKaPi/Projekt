@@ -16,10 +16,11 @@ namespace PlanZajec
     {
         
         private DataTable _dataTablePrzedmioty;
+        private DataTable _dataTablePliki;
         protected void Page_Load(object sender, EventArgs e)
         {
                 BindGridPrzedmioty();
-               
+                
         }
 
         private void BindGridPrzedmioty()
@@ -57,7 +58,7 @@ namespace PlanZajec
         private void BindGridMaterialyById(int subjectId)
         {
             
-            DataTable dataTable = new DataTable();
+            _dataTablePliki = new DataTable();
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString);
 
             try
@@ -70,11 +71,13 @@ namespace PlanZajec
                 cmd.CommandText = query;
                 SqlParameter parameter = new SqlParameter("@id", subjectId);
                 cmd.Parameters.Add(parameter);
-                dataAdapter.Fill(dataTable);
-                if (dataTable.Rows.Count > 0)
+                dataAdapter.Fill(_dataTablePliki);
+                if (_dataTablePliki.Rows.Count > 0)
                 {
-                    GridMaterialy.DataSource = dataTable;
+                    GridMaterialy.DataSource = _dataTablePliki;
+                    
                     GridMaterialy.DataBind();
+                    Session["dataTable"] = _dataTablePliki;
                 }
                 else
                 {
@@ -93,7 +96,9 @@ namespace PlanZajec
             {
                 connection.Close();
             }
+
         }
+
 
         protected void GridPrzedmioty_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -109,10 +114,12 @@ namespace PlanZajec
         {
             if (e.CommandName == "sciagnij")
             {
-
+               // const int columnNumberOfFileId = 0;
+                const int columnNumberOfFileName = 0;
+                DataTable dt = (DataTable) Session["dataTable"];
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                string streamID = GridMaterialy.Rows[rowIndex].Cells[0].Text;
-                string nazwapliku = GridMaterialy.Rows[rowIndex].Cells[1].Text;
+                string streamID = dt.Rows[rowIndex].ItemArray[0].ToString();
+                string nazwapliku = GridMaterialy.Rows[rowIndex].Cells[columnNumberOfFileName].Text;
                 
                 SqlConnection objSqlCon = new SqlConnection();
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
@@ -126,11 +133,10 @@ namespace PlanZajec
 
                 using (SqlDataReader sdr = objSqlCmd.ExecuteReader())
                 {
+                    
                     while (sdr.Read())
                         context = (byte[])sdr[0];
                 }
-
-
 
                 objSqlTran.Commit();
                 Response.Clear();
@@ -138,7 +144,25 @@ namespace PlanZajec
                 //Response.ContentType = "image/jpeg";  
                 Response.BinaryWrite(context);
             }
+            if (e.CommandName == "usun")
+            {
+                DataTable dt = (DataTable)Session["dataTable"];
+                int rowIndex = Int32.Parse(e.CommandArgument.ToString());
+                string streamID = dt.Rows[rowIndex].ItemArray[0].ToString();
+
+                SqlConnection objSqlCon = new SqlConnection();
+                objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
+                objSqlCon.Open();
+                SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
+                SqlCommand objSqlCmd = new SqlCommand("DELETE FROM Pliki WHERE id=@stream_id", objSqlCon, objSqlTran);
+                objSqlCmd.Parameters.AddWithValue("stream_id", streamID);
+                objSqlCmd.ExecuteNonQuery();
+                objSqlTran.Commit();
+                BindGridMaterialyById(Convert.ToInt32(dt.Rows[rowIndex].ItemArray[5].ToString()));
+
             }
+
+        }
         
 
         protected void Btn_Wyslij_Click(object sender, EventArgs e)
@@ -171,5 +195,19 @@ namespace PlanZajec
             }
         }
 
+        protected void GridMaterialy_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            const int columnNumberOfOwner = 3;
+
+            if (e.Row.RowType != DataControlRowType.DataRow) return;
+            string userNameInRow = e.Row.Cells[columnNumberOfOwner].Text;
+            if (!userNameInRow.Equals(User.Identity.Name))
+            {
+                Button btnDelete = (Button) e.Row.FindControl("btnDelete");
+                btnDelete.Visible = false;
+            }
+        }
+
+    
     }
 }
