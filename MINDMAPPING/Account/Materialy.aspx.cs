@@ -64,7 +64,7 @@ namespace PlanZajec
             try
             {
                 connection.Open();
-                string query = "SELECT id, Nazwa, Opis, Wlasciciel FROM Pliki where IdPrzedmiotu = @id";
+                string query = "SELECT id, Nazwa, Opis, IdPrzedmiotu, Wlasciciel FROM Pliki where IdPrzedmiotu = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                 cmd.CommandType = CommandType.Text;
@@ -158,7 +158,7 @@ namespace PlanZajec
                 objSqlCmd.Parameters.AddWithValue("stream_id", streamID);
                 objSqlCmd.ExecuteNonQuery();
                 objSqlTran.Commit();
-                BindGridMaterialyById(Convert.ToInt32(dt.Rows[rowIndex].ItemArray[5].ToString()));
+                BindGridMaterialyById(Convert.ToInt32(dt.Rows[rowIndex].ItemArray[3].ToString()));
 
             }
 
