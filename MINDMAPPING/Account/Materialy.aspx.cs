@@ -197,7 +197,7 @@ namespace PlanZajec
 
         protected void GridMaterialy_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            const int columnNumberOfOwner = 3;
+            const int columnNumberOfOwner = 2;
 
             if (e.Row.RowType != DataControlRowType.DataRow) return;
             string userNameInRow = e.Row.Cells[columnNumberOfOwner].Text;
