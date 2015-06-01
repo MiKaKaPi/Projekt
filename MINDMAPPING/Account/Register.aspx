@@ -95,11 +95,6 @@
             <tr>
                 <td>Twoje konto zostało pomyślnie utworzone.</td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" CommandName="Continue" Text="Continue" ValidationGroup="RegisterUser" />
-                </td>
-            </tr>
         </table>
     </ContentTemplate>
             </asp:CompleteWizardStep>
