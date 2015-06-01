@@ -105,6 +105,7 @@
     <Content Include="App_Data\recoverypasswordemail.txt" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\planstyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\tablestyle.css" />
@@ -112,6 +113,7 @@
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\download11.png" />
+    <Content Include="Images\header_back.gif" />
     <Content Include="Images\heroAccent.png" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />

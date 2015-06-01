@@ -192,6 +192,7 @@ namespace PlanZajec
 
                 objSqlTran.Commit();
                 Opis_TB.Text = "";
+                BindGridMaterialyById(idprzedmiotu);
             }
         }
 
