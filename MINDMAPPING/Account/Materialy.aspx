@@ -29,7 +29,7 @@
         <Columns>
             <%--<asp:BoundField DataField="id" HeaderText="" /> --%>
             <asp:BoundField DataField="Nazwa" HeaderText="Nazwa"/>
-            <asp:BoundField DataField="Rozszerzenie" HeaderText="Rozszerzenie"/>
+            <%-- <asp:BoundField DataField="Rozszerzenie" HeaderText="Rozszerzenie"/>--%>
             <asp:BoundField DataField="Opis" HeaderText="Opis"/>
             <asp:BoundField DataField="Wlasciciel" HeaderText="Właściciel"/>
             <asp:ButtonField  ButtonType="Button" Text="Ściągnij" CommandName="sciagnij" />

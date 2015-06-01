@@ -64,7 +64,7 @@ namespace PlanZajec
             try
             {
                 connection.Open();
-                string query = "SELECT * FROM Pliki where IdPrzedmiotu = @id";
+                string query = "SELECT id, Nazwa, Opis, Wlasciciel FROM Pliki where IdPrzedmiotu = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                 cmd.CommandType = CommandType.Text;
