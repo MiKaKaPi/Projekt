@@ -97,6 +97,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-MINDMAPPING-20140915131959.mdf" />
+    <Content Include="App_Data\aspnet-MINDMAPPING-20140915131959_log.ldf">
+      <DependentUpon>aspnet-MINDMAPPING-20140915131959.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\changepasswordemail.txt" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
