@@ -9,11 +9,12 @@
         <asp:HiddenField ID="HF_subjectID"  runat="server" />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:mywindowshosting %>" SelectCommand="SELECT [Nazwa], [Id] FROM [Przedmioty]"></asp:SqlDataSource>
         <asp:FileUpload ID="FileUpload1" runat="server" />
-        <asp:DropDownList ID="DropDownList1" runat="server"  DataSourceID="SqlDataSource1" DataTextField="Nazwa" DataValueField="Id" Height="20">
+        <asp:DropDownList ID="DropDownList1" runat="server"  DataSourceID="SqlDataSource1" DataTextField="Nazwa" DataValueField="Id" Height="2em" >
         </asp:DropDownList>
     <asp:Button ID="Btn_Wyslij" runat="server"  OnClick="Btn_Wyslij_Click"  Text="Wyślij" CssClass="withoutPadding"/>
         <br/>
         Opis:
+    <br/>
         <asp:TextBox ID="Opis_TB" runat="server" Height="122px" TextMode="MultiLine"></asp:TextBox>
         <div><asp:GridView ID="GridPrzedmioty"  CssClass="DDGridView" RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6" HorizontalAlign="Left" runat="server"  RowStyle-HorizontalAlign="Center" AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
         <Columns>
