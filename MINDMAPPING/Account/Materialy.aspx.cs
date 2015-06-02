@@ -118,51 +118,40 @@ namespace PlanZajec
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();
                 SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
-                SqlCommand objSqlCmd = new SqlCommand("SELECT file_stream.PathName(),file_type FROM [dbo].[ZdjeciaFileTable] where stream_id=@stream_id ", objSqlCon, objSqlTran);
+                SqlCommand objSqlCmd = new SqlCommand("SELECT file_stream FROM Pliki where id=@stream_id", objSqlCon, objSqlTran);
                 objSqlCmd.Parameters.AddWithValue("stream_id", streamID);
 
-                string path = string.Empty;
+                byte[] context = { };
                 string fileType = string.Empty;
 
                 using (SqlDataReader sdr = objSqlCmd.ExecuteReader())
                 {
                     while (sdr.Read())
-                        path = sdr[0].ToString();
+                        context = (byte[])sdr[0];
                 }
 
-                objSqlCmd = new SqlCommand("SELECT GET_FILESTREAM_TRANSACTION_CONTEXT()", objSqlCon, objSqlTran);
-                byte[] objContext = (byte[])objSqlCmd.ExecuteScalar();
 
-                SqlFileStream objSqlFileStream = new SqlFileStream(path, objContext, FileAccess.ReadWrite);
-                byte[] buffer = new byte[(int)objSqlFileStream.Length];
-
-                objSqlFileStream.Read(buffer, 0, buffer.Length);
-                objSqlFileStream.Close();
 
                 objSqlTran.Commit();
                 Response.Clear();
                 Response.AddHeader("Content-disposition", "attachment; filename=" + nazwapliku);
-                Response.ContentType = "image/jpeg";
-                Response.BinaryWrite(buffer);
-                }
-                else
-                {
-                   
-                }
+                //Response.ContentType = "image/jpeg";  
+                Response.BinaryWrite(context);
+            }
             }
         
 
         protected void Btn_Wyslij_Click(object sender, EventArgs e)
         {
-           
-            if (FileUpload1.HasFile && HF_subjectID.Value != "")
+            if (FileUpload1.HasFile)
             {
                 byte[] context = FileUpload1.FileBytes;
                 string saveFileName = FileUpload1.FileName;
                 String fileExtension = System.IO.Path.GetExtension(FileUpload1.FileName).ToLower();
                 string owner = User.Identity.Name;
                 SqlConnection objSqlCon = new SqlConnection();
-                String opis = "testetetetesststs";
+                int idprzedmiotu = Convert.ToInt32(DropDownList1.SelectedValue);
+                String opis = Opis_TB.Text;
                 Guid guid = Guid.NewGuid();
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();
@@ -173,15 +162,12 @@ namespace PlanZajec
                 objSqlCmd.Parameters.AddWithValue("nazwa", saveFileName);
                 objSqlCmd.Parameters.AddWithValue("opis", opis);
                 objSqlCmd.Parameters.AddWithValue("rozszerzenie", fileExtension);
-                objSqlCmd.Parameters.AddWithValue("idprzedmiotu", HF_subjectID.Value);
+                objSqlCmd.Parameters.AddWithValue("idprzedmiotu", idprzedmiotu);
                 objSqlCmd.Parameters.AddWithValue("owner", owner);
                 objSqlCmd.ExecuteNonQuery();
 
                 objSqlTran.Commit();
-            }
-            else
-            {
-
+                Opis_TB.Text = "";
             }
         }
 
