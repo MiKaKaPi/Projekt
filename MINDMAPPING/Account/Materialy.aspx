@@ -14,6 +14,7 @@
     <asp:Button ID="Btn_Wyslij" runat="server"  OnClick="Btn_Wyslij_Click"  Text="Wyślij" CssClass="withoutPadding"/>
         <br/>
         Opis:
+    <br />
         <asp:TextBox ID="Opis_TB" runat="server" Height="122px" TextMode="MultiLine"></asp:TextBox>
         <div><asp:GridView ID="GridPrzedmioty"  CssClass="DDGridView" RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6" HorizontalAlign="Left" runat="server"  RowStyle-HorizontalAlign="Center" AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
         <Columns>
