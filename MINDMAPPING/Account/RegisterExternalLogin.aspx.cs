@@ -131,35 +131,11 @@ namespace MatStud.Account
                 // Uzytkownik utworzony i powiązany poprawnie
                 if (OpenAuth.Login(ProviderName, ProviderUserId, createPersistentCookie: false))
                 {
-                    var nazwafolderu = userName.Text;
-                    string connString = ConfigurationManager.ConnectionStrings["FileTableDB"].ConnectionString;
-                    SqlConnection conn = null;
-                    try
-                    {
-                        conn = new SqlConnection(connString);
-                        conn.Open();
-
-                        using (SqlCommand cmd = new SqlCommand())
-                        {
-                            cmd.Connection = conn;
-                            cmd.CommandType = CommandType.Text;
-                            cmd.CommandText = " INSERT INTO MatStudFileTable(name, is_directory) values(@nazwafolderu,1)";
-                            cmd.Parameters.AddWithValue("@nazwafolderu", nazwafolderu);
-                            int rowsAffected = cmd.ExecuteNonQuery();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        LblKomunikat.Text = ex.Message;
-                    }
-                    finally
-                    {
-                        if (conn != null)
-                        {
-                            conn.Close();
+                   
+                          
                             RedirectToReturnUrl();
-                        }
-                    }
+                        
+                    
                    
                 }
             }
