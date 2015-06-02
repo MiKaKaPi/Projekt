@@ -116,6 +116,7 @@
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\download11.png" />
+    <Content Include="Images\header_back.gif" />
     <Content Include="Images\heroAccent.png" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
