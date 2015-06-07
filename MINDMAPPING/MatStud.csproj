@@ -109,7 +109,6 @@
     <Content Include="App_Data\recoverypasswordemail.txt" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\planstyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\tablestyle.css" />

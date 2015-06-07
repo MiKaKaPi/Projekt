@@ -26,7 +26,7 @@
 
     </div >
     <div>
-    <asp:GridView ID="GridMaterialy"  RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6"  RowStyle-HorizontalAlign="Center" HorizontalAlign="Left" OnRowDataBound="GridMaterialy_OnRowDataBound" OnRowCommand="GridMaterialy_RowCommand" CssClass="DDGridView" runat="server" Width="400px" AutoGenerateColumns="False" AllowSorting="True" >
+    <asp:GridView ID="GridMaterialy"  RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6"  RowStyle-HorizontalAlign="Center" HorizontalAlign="Left" OnRowDataBound="GridMaterialy_OnRowDataBound" OnRowCommand="GridMaterialy_RowCommand" CssClass="DDGridView" runat="server" Width="400px" AutoGenerateColumns="False" AllowSorting="True">
         <Columns>
             <asp:BoundField DataField="Nazwa" HeaderText="Nazwa" />
             <asp:BoundField DataField="Opis" HeaderText="Opis"/>
