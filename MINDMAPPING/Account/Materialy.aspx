@@ -32,6 +32,8 @@
             <asp:BoundField DataField="Opis" HeaderText="Opis"/>
             <asp:BoundField DataField="Wlasciciel" HeaderText="Właściciel"/>
             <asp:ButtonField  ButtonType="Button" Text="Ściągnij" CommandName="sciagnij"  />
+            <asp:BoundField DataField="LiczbaPlusow" HeaderText="Ranking"/>
+            <asp:ButtonField ButtonType ="Button" Text="+" CommandName="plusuj" />
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:Button ID="BtnDelete" CssClass="buttonfield" runat="server" Text="Usuń" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" CommandName="usun"/>

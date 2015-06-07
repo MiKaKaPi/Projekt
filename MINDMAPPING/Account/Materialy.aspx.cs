@@ -64,7 +64,7 @@ namespace PlanZajec
             try
             {
                 connection.Open();
-                string query = "SELECT id, Nazwa, Opis, IdPrzedmiotu, Wlasciciel FROM Pliki where IdPrzedmiotu = @id";
+                string query = "SELECT id, Nazwa, Opis, IdPrzedmiotu, Wlasciciel, LiczbaPlusow FROM Pliki where IdPrzedmiotu = @id";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                 cmd.CommandType = CommandType.Text;
@@ -162,6 +162,61 @@ namespace PlanZajec
 
             }
 
+            if (e.CommandName == "plusuj")
+            {
+                DataTable dt = (DataTable)Session["dataTable"];
+                int rowIndex = Int32.Parse(e.CommandArgument.ToString());
+                string streamID = dt.Rows[rowIndex].ItemArray[0].ToString();
+                int likes = Int32.Parse(dt.Rows[rowIndex].ItemArray[5].ToString());
+                string owner = dt.Rows[rowIndex].ItemArray[4].ToString();
+
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString);
+                DataTable dtLikes = new DataTable();
+                connection.Open();
+                string query = "SELECT Id FROM Plusy where IdPliku = @id and Student = @student";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = query;
+                SqlParameter parameter = new SqlParameter("@id", streamID);
+                SqlParameter parameter2 = new SqlParameter("@student", User.Identity.Name);
+                cmd.Parameters.Add(parameter);
+                cmd.Parameters.Add(parameter2);
+                dataAdapter.Fill(dtLikes);
+                if (dtLikes.Rows.Count < 1 && !owner.Equals(User.Identity.Name))
+                {
+                    SqlConnection objSqlCon = new SqlConnection();
+                    objSqlCon.ConnectionString =
+                        ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
+                    objSqlCon.Open();
+                    SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
+                    SqlCommand objSqlCmd = new SqlCommand("INSERT INTO Plusy values(@idPliku, @student)",
+                        objSqlCon, objSqlTran);
+      
+                    objSqlCmd.Parameters.AddWithValue("idPliku", streamID);
+                    objSqlCmd.Parameters.AddWithValue("student", User.Identity.Name);
+                    objSqlCmd.ExecuteNonQuery();
+                    objSqlTran.Commit();
+                    BindGridMaterialyById(Convert.ToInt32(dt.Rows[rowIndex].ItemArray[3].ToString()));
+
+                    likes++;
+                    SqlConnection objSqlCon2 = new SqlConnection();
+                    objSqlCon2.ConnectionString =
+                        ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
+                    objSqlCon2.Open();
+                    SqlTransaction objSqlTran2 = objSqlCon2.BeginTransaction();
+                    SqlCommand objSqlCmd2 = new SqlCommand("UPDATE Pliki SET LiczbaPlusow = @likes WHERE id = @streamID",
+                       objSqlCon2, objSqlTran2);
+                    objSqlCmd2.Parameters.AddWithValue("likes", likes);
+                    objSqlCmd2.Parameters.AddWithValue("streamID", streamID);
+                    objSqlCmd2.ExecuteNonQuery();
+                    objSqlTran2.Commit();
+
+                    BindGridMaterialyById(Convert.ToInt32(dt.Rows[rowIndex].ItemArray[3].ToString()));
+                }
+                connection.Close();
+            }
+
         }
         
 
@@ -180,7 +235,7 @@ namespace PlanZajec
                 objSqlCon.ConnectionString = ConfigurationManager.ConnectionStrings["mywindowshosting"].ConnectionString;
                 objSqlCon.Open();
                 SqlTransaction objSqlTran = objSqlCon.BeginTransaction();
-                SqlCommand objSqlCmd = new SqlCommand("INSERT INTO Pliki(id,file_stream, Nazwa, Opis,Rozszerzenie, IdPrzedmiotu, Wlasciciel) VALUES (@guid,@dane, @nazwa,@opis,@rozszerzenie,@idprzedmiotu,@owner) ", objSqlCon, objSqlTran);
+                SqlCommand objSqlCmd = new SqlCommand("INSERT INTO Pliki(id,file_stream, Nazwa, Opis,Rozszerzenie, IdPrzedmiotu, Wlasciciel, LiczbaPlusow) VALUES (@guid,@dane, @nazwa,@opis,@rozszerzenie,@idprzedmiotu,@owner, @likes) ", objSqlCon, objSqlTran);
                 objSqlCmd.Parameters.AddWithValue("guid", guid);
                 objSqlCmd.Parameters.AddWithValue("dane", context);
                 objSqlCmd.Parameters.AddWithValue("nazwa", saveFileName);
@@ -188,6 +243,7 @@ namespace PlanZajec
                 objSqlCmd.Parameters.AddWithValue("rozszerzenie", fileExtension);
                 objSqlCmd.Parameters.AddWithValue("idprzedmiotu", idprzedmiotu);
                 objSqlCmd.Parameters.AddWithValue("owner", owner);
+                objSqlCmd.Parameters.AddWithValue("likes", 0);
                 objSqlCmd.ExecuteNonQuery();
 
                 objSqlTran.Commit();
@@ -207,6 +263,8 @@ namespace PlanZajec
                 Button btnDelete = (Button) e.Row.FindControl("btnDelete");
                 btnDelete.Visible = false;
             }
+
+
         }
 
     
