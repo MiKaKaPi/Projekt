@@ -16,7 +16,7 @@
         Opis:
     <br />
         <asp:TextBox ID="Opis_TB" runat="server" Height="122px" TextMode="MultiLine"></asp:TextBox>
-        <div><asp:GridView ID="GridPrzedmioty"  CssClass="DDGridView" RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6" HorizontalAlign="Left" runat="server"  RowStyle-HorizontalAlign="Center" AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
+        <div><asp:GridView ID="GridPrzedmioty" EmptyDataText="Brak plików w tym przedmiocie :)"  CssClass="DDGridView" RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6" HorizontalAlign="Left" runat="server"  RowStyle-HorizontalAlign="Center" AutoGenerateColumns="false" OnRowCommand="GridPrzedmioty_OnRowCommand">
         <Columns>
             <asp:BoundField  DataField="Nazwa"  HeaderText ="Nazwa przedmiotu"/>
             <asp:ButtonField   ButtonType="Button"  Text="Wyświetl" />
