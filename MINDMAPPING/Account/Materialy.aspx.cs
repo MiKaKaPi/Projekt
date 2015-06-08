@@ -19,8 +19,9 @@ namespace PlanZajec
         private DataTable _dataTablePliki;
         protected void Page_Load(object sender, EventArgs e)
         {
-                BindGridPrzedmioty();
-                
+
+            if(!IsPostBack) BindGridPrzedmioty();
+           
         }
 
         private void BindGridPrzedmioty()
@@ -40,6 +41,7 @@ namespace PlanZajec
                 {
                     GridPrzedmioty.DataSource = _dataTablePrzedmioty;
                     GridPrzedmioty.DataBind();
+                    Session["dataTablePrzedmioty"] = _dataTablePrzedmioty;
                 }
             }
             catch (Exception)
@@ -104,7 +106,8 @@ namespace PlanZajec
         {
             int numberOfClickedRow = Int32.Parse(e.CommandArgument.ToString());
             const int iterFromTable = 0;
-            int subjectId = Int32.Parse(_dataTablePrzedmioty.Rows[numberOfClickedRow].ItemArray[iterFromTable].ToString());
+            DataTable dtPrzedmioty = (DataTable) Session["dataTablePrzedmioty"];
+            int subjectId = Int32.Parse(dtPrzedmioty.Rows[numberOfClickedRow].ItemArray[iterFromTable].ToString());
             HF_subjectID.Value = subjectId.ToString();
             BindGridMaterialyById(subjectId);
 
